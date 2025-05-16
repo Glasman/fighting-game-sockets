@@ -1,0 +1,190 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        /* When you use box-sizing: border-box, the padding and border are included 
+      inside the specified width and height. This means that 
+      the total size of the element remains the width property,
+      regardless of padding and border. 
+      It simplifies layout calculations bc the total size of the element is predictable.
+      */
+        box-sizing: border-box;
+        font-family: "Press Start 2P", cursive;
+        /* .press-start-2p-regular {
+          font-family: "Press Start 2P", serif;
+          font-weight: 400;
+          font-style: normal;
+        } */
+      }
+
+      #game-controls {
+        position: absolute;
+        top: 515px;
+        right: 10px;
+      }
+
+      #game-controls button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+
+      #instructions-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+      }
+
+      #instructions-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      #close-instructions {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="position: relative; display: inline-block">
+      <div
+        style="
+          position: absolute;
+          display: flex;
+          width: 100%;
+          align-items: center;
+          padding: 20px;
+        "
+      >
+        <!-- player health -->
+        <div
+          style="
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 4px solid white;
+            border-left: 4px solid white;
+            border-bottom: 4px solid white;
+          "
+        >
+          <div style="background-color: red; height: 30px; width: 100%"></div>
+          <div
+            id="playerHealth"
+            style="
+              position: absolute;
+              background: #818cf8;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              width: 100%;
+            "
+          ></div>
+        </div>
+        <!-- timer -->
+        <div
+          id="timer"
+          style="
+            background-color: black;
+            width: 100px;
+            height: 50px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: 4px solid white;
+          "
+          class="press-start-2p-regular"
+        >
+          10
+        </div>
+        <!-- enemy health -->
+        <div
+          style="
+            position: relative;
+            width: 100%;
+            border-top: 4px solid white;
+            border-right: 4px solid white;
+            border-bottom: 4px solid white;
+          "
+        >
+          <div style="background-color: red; height: 30px"></div>
+          <div
+            id="enemyHealth"
+            style="
+              position: absolute;
+              background: #818cf8;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+            "
+          ></div>
+        </div>
+
+        <div id="game-controls" > 
+          <button id="show-instructions" >Instructions</button>
+        </div>
+
+        <div id="instructions-modal" class="hidden">
+          <div id="instructions-content">
+            <span id="close-instructions">&times;</span>
+            <h2>How to Play</h2>
+            <h3>Player 1</h3>
+            <p>W = Jump</p>
+            <p>S = Attack</p>
+            <p>A = Move Left</p>
+            <p>D = Move Right</p>
+            <h3>Player 2</h3>
+            <p>Up = Jump</p>
+            <p>Down = Attack</p>
+            <p>Left = Move Left</p>
+            <p>Right = Move Right</p>
+            <h3>To start a new game refresh the browser</h3>
+          </div>
+        </div>
+      </div>
+      <div
+        id="displayText"
+        style="
+          position: absolute;
+          color: white;
+          align-items: center;
+          justify-content: center;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          display: none;
+          /* top starts 0 from the top, right starts 0 from the right,
+          bottom starts 0 from the bottom, etc */
+        "
+      >
+        Tie
+      </div>
+
+      <canvas></canvas>
+    </div>
+    <script src="js/utils.js"></script>
+    <script src="js/classes.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

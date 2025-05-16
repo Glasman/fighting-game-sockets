@@ -18,8 +18,8 @@ server.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 });
 
-io.on('connection', (socket) => {
-    console.log('a user has connected')
-})
+io.on("connection", (socket) => {
+  console.log("a user has connected");
+});
 
 console.log("server loaded");

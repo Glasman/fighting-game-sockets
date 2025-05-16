@@ -140,8 +140,8 @@
           ></div>
         </div>
 
-        <div id="game-controls" > 
-          <button id="show-instructions" >Instructions</button>
+        <div id="game-controls">
+          <button id="show-instructions">Instructions</button>
         </div>
 
         <div id="instructions-modal" class="hidden">
@@ -183,6 +183,10 @@
 
       <canvas></canvas>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+    </script>
     <script src="js/utils.js"></script>
     <script src="js/classes.js"></script>
     <script src="./index.js"></script>

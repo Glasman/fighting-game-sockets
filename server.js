@@ -14,8 +14,12 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 });
+
+io.on('connection', (socket) => {
+    console.log('a user has connected')
+})
 
 console.log("server loaded");

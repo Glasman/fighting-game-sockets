@@ -30,126 +30,128 @@ const shop = new Sprite({
   framesMax: 6,
 });
 
-const player = new Fighter({
-  position: {
-    x: 0,
-    y: 0,
-  },
-  velocity: {
-    x: 0,
-    y: 0,
-  },
-  offset: {
-    x: 0,
-    y: 0,
-  },
-  imageSrc: "./img/samuraiMack/Idle.png",
-  framesMax: 8,
-  scale: 2.5,
-  offset: {
-    x: 215,
-    y: 157,
-  },
-  sprites: {
-    idle: {
-      imageSrc: "./img/samuraiMack/Idle.png",
-      framesMax: 8,
-    },
-    run: {
-      imageSrc: "./img/samuraiMack/Run.png",
-      framesMax: 8,
-    },
-    jump: {
-      imageSrc: "./img/samuraiMack/Jump.png",
-      framesMax: 2,
-    },
-    fall: {
-      imageSrc: "./img/samuraiMack/Fall.png",
-      framesMax: 2,
-    },
-    attack1: {
-      imageSrc: "./img/samuraiMack/Attack1.png",
-      framesMax: 6,
-    },
-    takeHit: {
-      imageSrc: "./img/samuraiMack/Take Hit - white silhouette.png",
-      framesMax: 4,
-    },
-    death: {
-      imageSrc: "./img/samuraiMack/Death.png",
-      framesMax: 6,
-    },
-  },
-  attackBox: {
-    offset: {
-      x: 60,
-      y: 50,
-    },
-    width: 200,
-    height: 50,
-  },
-});
+//attempting to move this information to the backend
+// const player = new Fighter({
+//   position: {
+//     x: 0,
+//     y: 0,
+//   },
+//   velocity: {
+//     x: 0,
+//     y: 0,
+//   },
+//   offset: {
+//     x: 0,
+//     y: 0,
+//   },
+//   imageSrc: "./img/samuraiMack/Idle.png",
+//   framesMax: 8,
+//   scale: 2.5,
+//   offset: {
+//     x: 215,
+//     y: 157,
+//   },
+//   sprites: {
+//     idle: {
+//       imageSrc: "./img/samuraiMack/Idle.png",
+//       framesMax: 8,
+//     },
+//     run: {
+//       imageSrc: "./img/samuraiMack/Run.png",
+//       framesMax: 8,
+//     },
+//     jump: {
+//       imageSrc: "./img/samuraiMack/Jump.png",
+//       framesMax: 2,
+//     },
+//     fall: {
+//       imageSrc: "./img/samuraiMack/Fall.png",
+//       framesMax: 2,
+//     },
+//     attack1: {
+//       imageSrc: "./img/samuraiMack/Attack1.png",
+//       framesMax: 6,
+//     },
+//     takeHit: {
+//       imageSrc: "./img/samuraiMack/Take Hit - white silhouette.png",
+//       framesMax: 4,
+//     },
+//     death: {
+//       imageSrc: "./img/samuraiMack/Death.png",
+//       framesMax: 6,
+//     },
+//   },
+//   attackBox: {
+//     offset: {
+//       x: 60,
+//       y: 50,
+//     },
+//     width: 200,
+//     height: 50,
+//   },
+// });
 
-const enemy = new Fighter({
-  position: {
-    x: 400,
-    y: 100,
-  },
-  velocity: {
-    x: 0,
-    y: 0,
-  },
-  offset: {
-    x: -50,
-    y: 0,
-  },
-  color: "blue",
-  imageSrc: "./img/kenji/Idle.png",
-  framesMax: 4,
-  scale: 2.5,
-  offset: {
-    x: 215,
-    y: 167,
-  },
-  sprites: {
-    idle: {
-      imageSrc: "./img/kenji/Idle.png",
-      framesMax: 4,
-    },
-    run: {
-      imageSrc: "./img/kenji/Run.png",
-      framesMax: 8,
-    },
-    jump: {
-      imageSrc: "./img/kenji/Jump.png",
-      framesMax: 2,
-    },
-    fall: {
-      imageSrc: "./img/kenji/Fall.png",
-      framesMax: 2,
-    },
-    attack1: {
-      imageSrc: "./img/kenji/Attack1.png",
-      framesMax: 4,
-    },
-    takeHit: {
-      imageSrc: "./img/kenji/Take hit.png",
-      framesMax: 3,
-    },
-    death: {
-      imageSrc: "./img/kenji/Death.png",
-      framesMax: 7,
-    },
-  },
-  attackBox: {
-    offset: {
-      x: -170,
-      y: 50,
-    },
-    width: 170,
-    height: 50,
-  },
-});
+// also being moved to front end
+// const enemy = new Fighter({
+//   position: {
+//     x: 400,
+//     y: 100,
+//   },
+//   velocity: {
+//     x: 0,
+//     y: 0,
+//   },
+//   offset: {
+//     x: -50,
+//     y: 0,
+//   },
+//   color: "blue",
+//   imageSrc: "./img/kenji/Idle.png",
+//   framesMax: 4,
+//   scale: 2.5,
+//   offset: {
+//     x: 215,
+//     y: 167,
+//   },
+//   sprites: {
+//     idle: {
+//       imageSrc: "./img/kenji/Idle.png",
+//       framesMax: 4,
+//     },
+//     run: {
+//       imageSrc: "./img/kenji/Run.png",
+//       framesMax: 8,
+//     },
+//     jump: {
+//       imageSrc: "./img/kenji/Jump.png",
+//       framesMax: 2,
+//     },
+//     fall: {
+//       imageSrc: "./img/kenji/Fall.png",
+//       framesMax: 2,
+//     },
+//     attack1: {
+//       imageSrc: "./img/kenji/Attack1.png",
+//       framesMax: 4,
+//     },
+//     takeHit: {
+//       imageSrc: "./img/kenji/Take hit.png",
+//       framesMax: 3,
+//     },
+//     death: {
+//       imageSrc: "./img/kenji/Death.png",
+//       framesMax: 7,
+//     },
+//   },
+//   attackBox: {
+//     offset: {
+//       x: -170,
+//       y: 50,
+//     },
+//     width: 170,
+//     height: 50,
+//   },
+// });
 
 // with the aid of this we can be pressing the d key and making the sprite move right,
 //then press the a key while still holding the d key to make the sprite move to the left

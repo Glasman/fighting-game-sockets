@@ -107,9 +107,7 @@ class Fighter extends Sprite {
       sprites[sprite].image = new Image();
       sprites[sprite].image.src = sprites[sprite].imageSrc;
     }
-    console.log(this.sprites);
   }
-  //draw() is an arbitrary naming convention, can be named whatever we want
 
   update() {
     this.draw();

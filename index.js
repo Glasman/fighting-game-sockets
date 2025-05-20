@@ -3,14 +3,20 @@ const canvas = document.querySelector("canvas");
 //function that you use to get access to the canvas tags 2D drawing functions
 //c just stands for context
 const c = canvas.getContext("2d");
-
 canvas.width = 1024;
 canvas.height = 576;
+
+const gravity = 0.8;
+
+const socket = io()
+
+const frontendPlayers = {}
+let player
+let enemy
 
 //canvas context is what's used to draw shapes on the screen, and once we have the canvas context we can start using the canvas api
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const gravity = 0.8;
 
 const background = new Sprite({
   position: {
@@ -30,7 +36,32 @@ const shop = new Sprite({
   framesMax: 6,
 });
 
-//attempting to move this information to the backend
+
+
+socket.on("updatePlayers", (backendPlayers) => {
+  for (const id in backendPlayers) {
+    const backendPlayer = backendPlayers[id]
+
+    if (!frontendPlayers[id]) {
+  
+      const {role, data} = backendPlayer
+      const newFighter = new Fighter({
+        ...data
+      })
+      
+      if (role === 'player1') {
+        player = newFighter
+      } else if (role === 'player2') {
+        enemy = newFighter
+      }
+
+      frontendPlayers[id] = backendPlayer
+
+    }
+  }
+})
+
+// attempting to move this information to the backend
 // const player = new Fighter({
 //   position: {
 //     x: 0,

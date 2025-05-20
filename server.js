@@ -8,7 +8,7 @@ const io = new Server(server, { pingInterval: 2000, pingTimeout: 5000 });
 const port = process.env.PORT || 3000;
 const path = require("path");
 
-const players = {};
+const backendPlayers = {};
 
 app.use(express.static(__dirname));
 
@@ -25,10 +25,11 @@ io.on("connection", (socket) => {
 
   let role = "observer";
   //removes all observers, returns just p1 and p2
-  const currentPlayers = Object.values(players).filter(
+  const currentPlayers = Object.values(backendPlayers).filter(
     (p) => p.role !== "observer"
   );
 
+  //assigns backendPlayers to either p1, p2, or obeserver as space allows
   if (!currentPlayers.find((p) => p.role === "player1")) {
     role = "player1";
   } else if (!currentPlayers.find((p) => p.role === "player2")) {
@@ -36,7 +37,7 @@ io.on("connection", (socket) => {
   }
 
   if (role === "player1") {
-    players[socket.id] = {
+    backendPlayers[socket.id] = {
       role,
       data: {
         position: {
@@ -98,13 +99,13 @@ io.on("connection", (socket) => {
         },
       },
     };
-    //   } else if (Object.keys(player2).length === 0) {
   } else if (role === "player2") {
-    players[socket.id] = {
+    backendPlayers[socket.id] = {
       role,
+      //this data is both on the frontend and backend for character creation should eventaully remove one
       data: {
         position: {
-          x: 400,
+          x: 700,
           y: 100,
         },
         velocity: {
@@ -164,21 +165,21 @@ io.on("connection", (socket) => {
       },
     };
   } else {
-    players[socket.id] = { role: "observer", data: { username: socket.id } };
+    backendPlayers[socket.id] = { role: "observer", data: { username: socket.id } };
   }
 
-//   const myRole = players[socket.id]?.role;
-//   const myData = players[socket.id]?.data;
+  //   const myRole = backendPlayers[socket.id]?.role;
+  //   const myData = backendPlayers[socket.id]?.data;
 
-//   console.log(`Assigned ${socket.id} as ${myRole}`);
-//   console.log("Player data:", myData);
+  //   console.log(`Assigned ${socket.id} as ${myRole}`);
+  //   console.log("Player data:", myData);
+
+  io.emit("updatePlayers", backendPlayers);
 
   socket.on("disconnect", (reason) => {
-    delete players[socket.id];
+    delete backendPlayers[socket.id];
     console.log("Player has disconnected due to:", reason);
   });
-
-//   console.log("players", players);
 });
 
 console.log("server loaded");

@@ -97,7 +97,6 @@ class Fighter extends Sprite {
     this.color = color;
     this.isAttacking;
     this.health = 100;
-    //if animation keeps bugging get rid of below and go back to 2:28 in vid
     this.framesCurrent = 0;
     this.framesElapsed = 0;
     this.framesHold = 6;

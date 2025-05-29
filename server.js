@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 const path = require("path");
 
 const backendPlayers = {};
+const backendObservers = {};
 
 app.use(express.static(__dirname));
 
@@ -165,7 +166,7 @@ io.on("connection", (socket) => {
       },
     };
   } else {
-    backendPlayers[socket.id] = { role: "observer", data: { username: socket.id } };
+    backendObservers[socket.id] = { role: "observer", data: { username: socket.id } };
   }
 
   //   const myRole = backendPlayers[socket.id]?.role;
@@ -174,7 +175,7 @@ io.on("connection", (socket) => {
   //   console.log(`Assigned ${socket.id} as ${myRole}`);
   //   console.log("Player data:", myData);
 
-  io.emit("updatePlayers", backendPlayers);
+  io.emit("updatePlayers", backendPlayers, backendObservers);
 
   socket.on("disconnect", (reason) => {
     delete backendPlayers[socket.id];

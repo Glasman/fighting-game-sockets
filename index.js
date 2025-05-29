@@ -8,15 +8,15 @@ canvas.height = 576;
 
 const gravity = 0.8;
 
-const socket = io()
+const socket = io();
 
-const frontendPlayers = {}
-let player
-let enemy
+const frontendPlayers = {};
+const frontendObservers = {};
+let player;
+let enemy;
 
 //canvas context is what's used to draw shapes on the screen, and once we have the canvas context we can start using the canvas api
 c.fillRect(0, 0, canvas.width, canvas.height);
-
 
 const background = new Sprite({
   position: {
@@ -36,30 +36,40 @@ const shop = new Sprite({
   framesMax: 6,
 });
 
-
-
-socket.on("updatePlayers", (backendPlayers) => {
+socket.on("updatePlayers", (backendPlayers, backendObservers) => {
   for (const id in backendPlayers) {
-    const backendPlayer = backendPlayers[id]
+    const backendPlayer = backendPlayers[id];
 
     if (!frontendPlayers[id]) {
-  
-      const {role, data} = backendPlayer
+      const { role, data } = backendPlayer;
       const newFighter = new Fighter({
-        ...data
-      })
-      
-      if (role === 'player1') {
-        player = newFighter
-      } else if (role === 'player2') {
-        enemy = newFighter
+        ...data,
+      });
+
+      if (role === "player1") {
+        player = newFighter;
+      } else if (role === "player2") {
+        enemy = newFighter;
       }
 
-      frontendPlayers[id] = backendPlayer
-
+      frontendPlayers[id] = backendPlayer;
     }
   }
-})
+  for (const id in backendObservers) {
+    const backendObserver = backendObservers[id];
+    if (!frontendObservers[id]) {
+      frontendObservers[id] = backendObserver;
+    }
+  }
+
+  for (const id in frontendPlayers) {
+    if (!backendPlayers[id]) {
+      delete frontendPlayers[id];
+    }
+  }
+  console.log(frontendPlayers);
+  console.log("frontend observers", frontendObservers)
+});
 
 const keys = {
   a: {

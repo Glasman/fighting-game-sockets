@@ -71,24 +71,6 @@ socket.on("updatePlayers", (backendPlayers, backendObservers) => {
   console.log("frontend observers", frontendObservers)
 });
 
-const keys = {
-  a: {
-    pressed: false,
-  },
-  d: {
-    pressed: false,
-  },
-  w: {
-    pressed: false,
-  },
-  ArrowRight: {
-    pressed: false,
-  },
-  ArrowLeft: {
-    pressed: false,
-  },
-};
-
 decreaseTimer();
 
 // Show instructions modal
@@ -217,6 +199,33 @@ function animate() {
 }
 
 animate();
+
+const keys = {
+  a: {
+    pressed: false,
+  },
+  s: {
+    pressed: false,
+  },
+  d: {
+    pressed: false,
+  },
+  w: {
+    pressed: false,
+  },
+  ArrowRight: {
+    pressed: false,
+  },
+  ArrowLeft: {
+    pressed: false,
+  },
+  ArrowUp: {
+    pressed: false,
+  },
+  ArrowDown: {
+    pressed: false,
+  },
+};
 
 window.addEventListener("keydown", (event) => {
   if (!player.dead) {
